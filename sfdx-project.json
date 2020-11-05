@@ -1,0 +1,18 @@
+{
+    "packageDirectories": [
+        {
+            "path": "tradesAppPackage",
+            "package": "TradesApp",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT",
+            "default": true
+        }
+    ],
+    "namespace": "Ebury_Test",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "50.0",
+    "packageAliases": {
+        "TradesApp": "0Ho09000000sXtqCAE",
+        "TradesApp@0.1.0-1": "04t09000000hs5zAAA"
+    }
+}
