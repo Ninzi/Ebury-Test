@@ -1,0 +1,27 @@
+<template>
+    <div class="slds-m-around_xx-large slds-theme_shade">
+        <lightning-record-edit-form object-api-name="Trade__c" onerror={handleError} onsuccess={handleSuccess} onsubmit ={handleSubmit}>
+            <div class="slds-container--center slds-container--large">
+                <div class="slds-grid">
+                    <lightning-input-field field-name='Sell_Currency__c' class="slds-size--1-of-5" style="text-align: center" onchange={handleSellCurrencyChange}></lightning-input-field>
+                    <lightning-icon icon-name="utility:chevronright" class="slds-align_absolute-center" size="medium" style="text-align: center"></lightning-icon>
+                    <lightning-input-field field-name='Rate__c' value={rate} readonly = "true" class="slds-size--1-of-5" style="text-align: center"></lightning-input-field>
+                    <lightning-icon icon-name="utility:chevronright" class="slds-align_absolute-center" size="medium" style="text-align: center"></lightning-icon>
+                    <lightning-input-field field-name='Buy_Currency__c' class="slds-size--1-of-5" style="text-align: center" onchange={handleBuyCurrencyChange}></lightning-input-field>
+                </div>
+                <div class="slds-grid  slds-grid_align-spread">
+                    <div class="slds-col">
+                        <lightning-input-field field-name='Sell_Amount__c' style="text-align: center" onchange={handleSellAmountChange}></lightning-input-field>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-input-field field-name='Buy_Amount__c' style="text-align: center" value={buyAmountValue} readonly = "true"></lightning-input-field>
+                    </div>
+                </div>
+                <div class="slds-m-vertical_small slds-clearfix">
+                    <lightning-button class="slds-m-top_small" type="submit" label="Create"></lightning-button>
+                    <lightning-button class="slds-float_right" type="cancel" label="Cancel" onclick={handleCancel}></lightning-button>
+                </div>
+            </div>
+        </lightning-record-edit-form>
+    </div>  
+</template>

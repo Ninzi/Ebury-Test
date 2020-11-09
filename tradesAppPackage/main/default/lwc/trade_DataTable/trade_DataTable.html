@@ -1,0 +1,9 @@
+<template>
+    <template if:true={tradeList}>
+        <lightning-datatable data={tradeList} columns={columns} onsort={updateColumnSorting} sorted-by={sortedBy} sorted-direction={sortedDirection} key-field="Id" hide-checkbox-column>
+        </lightning-datatable>
+    </template>
+    <template if:true={error}>
+        {error}
+    </template>
+</template>
