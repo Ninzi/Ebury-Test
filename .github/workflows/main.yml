@@ -22,16 +22,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-        - name: Salesforce SFDX CLI Action
-          # You may pin to the exact commit or the version.
-          # uses: sfdx-actions/setup-sfdx@11c446244374e3ada4f0116cbd0e3fcb8833fbcf
-          uses: sfdx-actions/setup-sfdx@v1
-          with:
-            # Authorize a Salesforce org using an SFDX auth URL
-            sfdx-auth-url: ${{ secrets.EBURY_URL }}
-            
-        - name: Set Default DevHub
-          run: sfdx force:config:set defaultdevhubusername= cupiantoninoeburyspain@gmail.com 
+      - name: Salesforce SFDX CLI Action
+        # You may pin to the exact commit or the version.
+        # uses: sfdx-actions/setup-sfdx@11c446244374e3ada4f0116cbd0e3fcb8833fbcf
+        uses: sfdx-actions/setup-sfdx@v1
+        with:
+          # Authorize a Salesforce org using an SFDX auth URL
+          sfdx-auth-url: ${{ secrets.EBURY_URL }}
+
+      - name: Set Default DevHub
+        run: sfdx force:config:set defaultdevhubusername= cupiantoninoeburyspain@gmail.com 
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
