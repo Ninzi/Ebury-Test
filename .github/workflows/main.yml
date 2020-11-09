@@ -30,15 +30,24 @@ jobs:
           # Authorize a Salesforce org using an SFDX auth URL
           sfdx-auth-url: ${{ secrets.EBURY_URL }}
 
+      #Sets the default devhub org for us to create scratch orgs and packages against
       - name: Set Default DevHub
         run: sfdx force:config:set defaultdevhubusername=cupiantoninoeburyspain@gmail.com 
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      #Creates a scratch org to test our code
+      - name: Create Scratch Org
+        run: sfdx force:org:create -a actionsBuild -d 1 -f config/project-scratch-def.json -s
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      #Pushes all configurations to scratch org
+      - name: Pushing Source
+        run: sfdx force:source:push -f
+
+      #Run all Apex tests in our scratch org
+      - name: Running Apex Tests
+        run: sfdx force:apex:test:run -l RunLocalTests
+
+      #Delete Scratch Orgs after successful build
+      - name: Deleting Scratch Org
+        run : sfdx force:org:delete -p
+
+
