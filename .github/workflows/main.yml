@@ -31,7 +31,7 @@ jobs:
           sfdx-auth-url: ${{ secrets.EBURY_URL }}
 
       - name: Set Default DevHub
-        run: sfdx force:config:set defaultdevhubusername= cupiantoninoeburyspain@gmail.com 
+        run: sfdx force:config:set defaultdevhubusername=cupiantoninoeburyspain@gmail.com 
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
