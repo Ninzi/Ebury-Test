@@ -2,40 +2,37 @@
 public class tradeTriggerTest {
 
     @testSetup static void setup() {
-
-        Group tradeReviewersGroup = new Group(Name='Trade reviewers', Type='Queue');
-        insert tradeReviewersGroup;
-
-        QueuesObject tradeReviewersQueue = new QueueSObject(QueueID = tradeReviewersGroup.id, SobjectType = 'Trade__c');
-        insert tradeReviewersQueue;
-
+        
+        Group tradeReviewersGroup;
+        
+        try{
+            tradeReviewersGroup = new Group(DeveloperName='Trade_reviewers', Type='Queue');
+            insert tradeReviewersGroup;
+    
+            QueuesObject tradeReviewersQueue = new QueueSObject(QueueID = tradeReviewersGroup.id, SobjectType = 'Trade__c');
+            insert tradeReviewersQueue;
+            
+        } catch(exception e) {
+            tradeReviewersGroup = [Select ID from Group where DeveloperName = 'Trade_reviewers'];
+        }
+        
         User u = new User(FirstName = 'My', LastName = 'User', 
                            Alias = 'myuse', Email = 'my.user@email.com',
                            Username = 'my.user@email.com', CommunityNickname = 'MyUser',
-                           ProfileId = [SELECT Id FROM Profile WHERE Name = 'Test'].Id, TimeZoneSidKey = 'Europe/Madrid',
-                           LocaleSidKey = 'IT', EmailEncodingKey = 'UTF-8',
-                           LanguageLocaleKey = 'it', IsActive = true);
-        system.debug(u);
+                           ProfileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id, TimeZoneSidKey = 'Europe/Rome',
+                           LocaleSidKey = 'ES', EmailEncodingKey = 'UTF-8',
+                           LanguageLocaleKey = 'es', IsActive = true);
+        insert u;
 
         GroupMember member = new GroupMember();
         member.UserOrGroupId = u.Id;
         member.GroupId = tradeReviewersGroup.Id;
         insert member;
 
-        //Id userId = UserInfo.getUserId();
     }
 
     @isTest 
     static void newTrade() {
-
-        Group tradeReviewersGroup = [Select ID from Group where Name ='Trade reviewers'];
-        
-        System.runAs(new User(Id = UserInfo.getUserId())) {   
-            GroupMember member = new GroupMember();
-            member.UserOrGroupId = UserInfo.getUserID();
-            member.GroupId = tradeReviewersGroup.Id;
-            insert member;
-        }
 
         Test.startTest();
         Trade__c trade = new Trade__c();
