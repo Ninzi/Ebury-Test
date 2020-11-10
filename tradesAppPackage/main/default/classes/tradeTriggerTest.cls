@@ -6,7 +6,7 @@ public class tradeTriggerTest {
         Group tradeReviewersGroup = new Group(Name='Trade reviewers', Type='Queue');
         insert tradeReviewersGroup;
 
-        QueuesObject tradeReviewersQueue = new QueueSObject(QueueID = tradeReviewersGroup.id);
+        QueuesObject tradeReviewersQueue = new QueueSObject(QueueID = tradeReviewersGroup.id, SobjectType = 'Trade__c');
         insert tradeReviewersQueue;
 
         User u = new User(FirstName = 'My', LastName = 'User', 
